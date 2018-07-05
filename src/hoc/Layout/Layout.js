@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./Layout.css";
 
 import Header from "../../components/Header/Header";
-import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from "constants";
+import Footer from "../../components/Footer/Footer";
 
 class Layout extends Component {
   state = {
@@ -20,7 +20,7 @@ class Layout extends Component {
           onOpenNav={() => this.toggleSideNav(true)}
         />
         {this.props.children}
-        Footer
+        <Footer />
       </div>
     );
   }
