@@ -5,7 +5,7 @@ import Slider from "../widgets/Slider/Slider";
 const Home = () => {
   return (
     <div>
-      <Slider />
+      <Slider type="featured" start={0} amount={3} />
     </div>
   );
 };
