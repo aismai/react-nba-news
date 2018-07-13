@@ -1,20 +1,26 @@
 import React, { Component } from "react";
-import axios from "axios";
+import { firebaseArticles } from "../../../firebase";
 
 import SliderTemplates from "./SliderTemplates";
-import { URL } from "../../../config";
 
 class Slider extends Component {
   state = { news: [] };
 
   componentWillMount() {
-    axios
-      .get(
-        `${URL}/articles?_start=${this.props.start}&_end=${this.props.amount}`
-      )
-      .then(response => {
+    firebaseArticles
+      .limitToFirst(3)
+      .once("value")
+      .then(snapshot => {
+        const news = [];
+
+        snapshot.forEach(childSnapshot => {
+          news.push({
+            ...childSnapshot.val(),
+            id: childSnapshot.key
+          });
+        });
         this.setState({
-          news: response.data
+          news
         });
       });
   }
