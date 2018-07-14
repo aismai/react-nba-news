@@ -16,10 +16,23 @@ const firebaseArticles = firebaseDB.ref("articles");
 const firebaseTeams = firebaseDB.ref("teams");
 const firebasevideos = firebaseDB.ref("videos");
 
+const firebaseLooper = snapshot => {
+  const data = [];
+
+  snapshot.forEach(childSnapshot => {
+    data.push({
+      ...childSnapshot.val(),
+      id: childSnapshot.key
+    });
+  });
+  return data;
+};
+
 export {
   firebase,
   firebaseDB,
   firebaseArticles,
   firebaseTeams,
-  firebasevideos
+  firebasevideos,
+  firebaseLooper
 };

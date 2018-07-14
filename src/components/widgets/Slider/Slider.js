@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { firebaseArticles } from "../../../firebase";
+import { firebaseArticles, firebaseLooper } from "../../../firebase";
 
 import SliderTemplates from "./SliderTemplates";
 
@@ -11,14 +11,8 @@ class Slider extends Component {
       .limitToFirst(3)
       .once("value")
       .then(snapshot => {
-        const news = [];
+        const news = firebaseLooper(snapshot);
 
-        snapshot.forEach(childSnapshot => {
-          news.push({
-            ...childSnapshot.val(),
-            id: childSnapshot.key
-          });
-        });
         this.setState({
           news
         });
