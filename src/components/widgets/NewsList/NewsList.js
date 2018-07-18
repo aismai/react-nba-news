@@ -32,11 +32,6 @@ class NewsList extends Component {
         const teams = firebaseLooper(snapshot);
         this.setState({ teams });
       });
-      // axios.get(`${URL}/teams`).then(response => {
-      //   this.setState({
-      //     teams: response.data
-      //   });
-      // });
     }
 
     firebaseArticles
@@ -55,13 +50,6 @@ class NewsList extends Component {
       .catch(e => {
         console.log(e);
       });
-    // axios.get(`${URL}/articles?_start=${start}&_end=${end}`).then(response => {
-    //   this.setState({
-    //     items: [...this.state.items, ...response.data],
-    //     start,
-    //     end
-    //   });
-    // });
   };
 
   loadMore = () => {

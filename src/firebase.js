@@ -14,7 +14,7 @@ firebase.initializeApp(config);
 const firebaseDB = firebase.database();
 const firebaseArticles = firebaseDB.ref("articles");
 const firebaseTeams = firebaseDB.ref("teams");
-const firebasevideos = firebaseDB.ref("videos");
+const firebaseVideos = firebaseDB.ref("videos");
 
 const firebaseLooper = snapshot => {
   const data = [];
@@ -33,6 +33,6 @@ export {
   firebaseDB,
   firebaseArticles,
   firebaseTeams,
-  firebasevideos,
+  firebaseVideos,
   firebaseLooper
 };
