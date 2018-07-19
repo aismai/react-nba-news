@@ -59,7 +59,7 @@ class VideosList extends Component {
 
   loadMore = () => {
     let end = this.state.end + this.state.amount;
-    this.request(this.state.end, end);
+    this.request(this.state.end + 1, end);
   };
 
   componentWillMount() {
