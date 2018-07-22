@@ -1,15 +1,12 @@
 import React, { Component } from "react";
 import { CSSTransition, TransitionGroup } from "react-transition-group";
 import { Link } from "react-router-dom";
-import axios from "axios";
 import {
   firebaseTeams,
   firebaseArticles,
   firebaseLooper
 } from "../../../firebase";
-
 import styles from "./NewsList.css";
-import { URL } from "../../../config";
 import Button from "../Buttons/Button";
 import CardInfo from "../CardInfo/CardInfo";
 
