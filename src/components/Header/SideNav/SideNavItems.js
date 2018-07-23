@@ -28,6 +28,12 @@ const SideNavItems = () => {
       icon: "sign-in",
       text: "Sign In",
       link: "/sign-in"
+    },
+    {
+      type: style.option,
+      icon: "sign-out",
+      text: "Sign out",
+      link: "/sign-out"
     }
   ];
 
