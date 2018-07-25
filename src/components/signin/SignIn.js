@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import styles from "./SignIn.css";
 
+import FormField from "../widgets/FormFields/FormField";
+
 class SignIn extends Component {
   state = {
     registerError: "",
@@ -12,7 +14,7 @@ class SignIn extends Component {
         config: {
           name: "email_input",
           type: "email",
-          placehodler: "Enter your email"
+          placeholder: "Enter your email"
         },
         validation: {
           required: true,
@@ -28,7 +30,7 @@ class SignIn extends Component {
         config: {
           name: "password_input",
           type: "password",
-          placehodler: "Enter your password"
+          placeholder: "Enter your password"
         },
         validation: {
           required: true,
@@ -41,8 +43,36 @@ class SignIn extends Component {
     }
   };
 
+  updateForm = element => {
+    const newFormData = { ...this.state.formData };
+    const newElement = { ...newFormData[element.id] };
+
+    newElement.value = element.event.target.value;
+    newFormData[element.id] = newElement;
+
+    this.setState({
+      formData: newFormData
+    });
+  };
+
   render() {
-    return <div>SIGN IN</div>;
+    return (
+      <div className={styles.logContainer}>
+        <form>
+          <h2>Register / Login</h2>
+          <FormField
+            id={"email"}
+            formData={this.state.formData.email}
+            change={element => this.updateForm(element)}
+          />
+          <FormField
+            id={"password"}
+            formData={this.state.formData.password}
+            change={element => this.updateForm(element)}
+          />
+        </form>
+      </div>
+    );
   }
 }
 
