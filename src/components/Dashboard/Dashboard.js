@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import styles from "./Dashboard.css";
+import { firebaseTeams } from "../../firebase";
 import FormField from "../widgets/FormFields/FormField";
 import { Editor } from "react-draft-wysiwyg";
 import { EditorState, convertFromRaw, convertToRaw } from "draft-js";
@@ -46,8 +47,49 @@ class Dashboard extends Component {
         elemet: "texteditor",
         value: "",
         valid: true
+      },
+      teams: {
+        element: "select",
+        value: "",
+        config: {
+          name: "teams_input",
+          options: []
+        },
+        validation: {
+          required: true
+        },
+        valid: false,
+        touched: false,
+        validationMessage: ""
       }
     }
+  };
+
+  componentDidMount() {
+    this.loadTeams();
+  }
+
+  loadTeams = () => {
+    firebaseTeams.once("value").then(snapshot => {
+      let teams = [];
+
+      snapshot.forEach(childSnapshot => {
+        teams.push({
+          id: childSnapshot.val().teamId,
+          name: childSnapshot.val().city
+        });
+      });
+
+      const newFormData = { ...this.state.formData };
+      const newElement = { ...newFormData["teams"] };
+
+      newElement.config.options = teams;
+      newFormData["teams"] = newElement;
+
+      this.setState({
+        formData: newFormData
+      });
+    });
   };
 
   updateForm = (element, content = "") => {
@@ -156,6 +198,12 @@ class Dashboard extends Component {
             wrapperClassName="myEditor-wrapper"
             editorClassName="myEditor-editor"
             onEditorStateChange={this.onEditorStateChange}
+          />
+
+          <FormField
+            id={"teams"}
+            formData={this.state.formData.teams}
+            change={element => this.updateForm(element)}
           />
           {this.submitButton()}
           {this.showError()}
