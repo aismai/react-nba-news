@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import { Route, Switch } from "react-router-dom";
 
 import Home from "./components/Home/Home";
@@ -8,6 +8,7 @@ import VideoArticle from "./components/Articles/Videos/Video/Index";
 import NewsMain from "./components/Articles/News/Main/Index";
 import VideosMain from "./components/Articles/Videos/Main/Index";
 import SignIn from "./components/signin/SignIn";
+import Dashboard from "./components/Dashboard/Dashboard";
 
 const Routes = props => {
   return (
@@ -19,6 +20,7 @@ const Routes = props => {
         <Route path="/videos/:id" exact component={VideoArticle} />
         <Route path="/videos" exact component={VideosMain} />
         <Route path="/sign-in" exact component={SignIn} />
+        <Route path="/dashboard" exact component={Dashboard} />
       </Switch>
     </Layout>
   );
